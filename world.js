@@ -3,6 +3,7 @@
 $(document).ready(function(){    
     var find = document.getElementById("lookup");
     var lookup = $("#lookup");
+    var all = $("#all");
     find.onclick=function() {
        $.ajax({
             type: "GET",
@@ -15,6 +16,19 @@ $(document).ready(function(){
                     $("#result").html(text);
                 }
         })
+        if(all.is(":checked")){
+            $.ajax({
+                type: "GET",
+                url: "world.php",
+                datatype: "html",
+                data: {
+                    all: $("#all").val()
+                },
+                success: function(text){
+                    $("#result").html(text);
+                }
+            })
+        }
     }
     })
        /* var data = document.getElementById("country").value;
